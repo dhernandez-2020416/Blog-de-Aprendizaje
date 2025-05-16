@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { addComment, getComments } from './comments.controller.js'
+import { addComment, getComments, getCommentsByPost } from './comments.controller.js'
 import { validateAddComment } from '../../helpers/validators.js'
 
 const api = Router()
@@ -16,5 +16,11 @@ api.get(
     '/getComments',
     getComments
 )
+
+api.get(
+    '/getComments/:postId',
+    getCommentsByPost
+)
+
 
 export default api
