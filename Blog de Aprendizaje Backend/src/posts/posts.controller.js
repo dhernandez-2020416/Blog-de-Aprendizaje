@@ -18,7 +18,7 @@ export const addPost = async(req, res) =>{
 
         return res.send(
             {
-                status: true,
+                success: true,
                 message: 'Post created successfully',
                 post: addPost
             }
@@ -27,7 +27,7 @@ export const addPost = async(req, res) =>{
         console.error(err)
         return res.status(500).send(
             {
-                status: false,
+                success: false,
                 message: 'General error',
                 err
             }
@@ -50,7 +50,41 @@ export const getPost = async(req, res) => {
         console.error(err)
         return res.status(500).send(
             {
-                status: false,
+                success: false,
+                message: 'General error',
+                err
+            }
+        )
+    }
+}
+
+export const getPostByCourse = async(req, res) => {
+    try {
+        const { course } = req.params
+
+        const posts = await Post.find({ course }).sort({ creationDate: -1 })
+
+        if(posts.length == 0){
+            return res.status(404).send(
+                {
+                    success: false,
+                    message: 'There is no posts yet'
+                }
+            )
+        }
+
+        return res.send(
+            {
+                success: true,
+                message: 'Posts found',
+                posts
+            }
+        )
+    } catch (err) {
+        console.error(err)
+        return res.status(500).send(
+            {
+                success: false,
                 message: 'General error',
                 err
             }
