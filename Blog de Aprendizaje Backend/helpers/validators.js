@@ -29,7 +29,7 @@ export const validateAddPost = [
 export const validateAddComment = [
     body('username', 'Username cannot be empty')
         .notEmpty()
-        .isLength({ min: 5, max: 25 })
+        .isLength({ max: 25 })
         .withMessage('Username cannot exceed 25 characters and be less than 5 characters'),
     body('content', 'Content cannot be empty')
         .notEmpty()
