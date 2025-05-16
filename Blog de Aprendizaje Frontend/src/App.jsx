@@ -1,35 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route, Link } from 'react-router-dom'
+import Home from './pages/Home'
+import Course from './pages/Course'
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => (
+  <div>
+    {/* Barra de Navegación */}
+    <nav>
+      <div className="nav-container">
+        <Link to="/"><h1>Blog de Aprendizaje - Daniel Hernández</h1></Link>
+        <div className="nav-links">
+          <Link to="/TECNOLOGIA">Tecnología</Link>
+          <Link to="/TALLER">Taller</Link>
+          <Link to="/PRACTICA SUPERVISADA">Práctica Supervisada</Link>
+        </div>
+      </div>
+    </nav>
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    {/* Contenido Principal */}
+    <main>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/TECNOLOGIA" element={<Course course="TECNOLOGIA" />} />
+        <Route path="/TALLER" element={<Course course="TALLER" />} />
+        <Route path="/PRACTICA SUPERVISADA" element={<Course course="PRACTICA SUPERVISADA" />} />
+      </Routes>
+    </main>
+  </div>
+)
 
 export default App
