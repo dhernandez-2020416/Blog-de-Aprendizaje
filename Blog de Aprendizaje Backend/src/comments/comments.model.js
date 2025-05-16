@@ -5,8 +5,7 @@ const commentModel = new Schema(
         username: {
             type: String,
             required: [true, 'Username is required'],
-            maxLength: [25, 'Username cannot exceed 25 characters'],
-            minLength: [5, 'Username cannot be less than 5 characters']
+            maxLength: [25, 'Username cannot exceed 25 characters']
         },
         content: {
             type: String,
